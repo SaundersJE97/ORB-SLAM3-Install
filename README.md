@@ -36,5 +36,18 @@ xhost +local:docker
 # Run docker
 ```bash
 cd orb-slam3-install
-docker run -td --privileged --net=host --ipc=host --name="orbslam3_test_2" --gpus=all -e "DISPLAY=$DISPLAY" -e "QT_X11_NO_MITSHM=1" -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" -e "XAUTHORITY=$XAUTH" -e ROS_IP=127.0.0.1 --cap-add=SYS_PTRACE -v `pwd`/Datasets:/Datasets
+docker run -it --privileged --net=host --ipc=host --name="orbslam3_test_2" --gpus=all -e "DISPLAY=$DISPLAY" -e "QT_X11_NO_MITSHM=1" -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" -e "XAUTHORITY=$XAUTH" -e ROS_IP=127.0.0.1 --cap-add=SYS_PTRACE -v `pwd`/Datasets:/Datasets orbslam3
+```
+
+# Running from EuRoC dataset
+Usage: ./stereo_inertial_euroc path_to_vocabulary path_to_settings path_to_sequence_folder_1 path_to_times_file_1 (path_to_image_folder_2 path_to_times_file_2 ... path_to_image_folder_N path_to_times_file_N)
+```bash
+./Examples/Stereo-Inertial/stereo_inertial_euroc Vocabulary/ORBvoc.txt /Examples/Stereo-Inertial/RealSense_D435i.yaml
+```
+
+# Running from a RealSense camera TODO:need to get a camera working.
+Run a quick test using stereo_inertial_realsense_D435i bash script
+./stereo_inertial_realsense_D435i path_to_vocabulary path_to_settings (trajectory_file_name)
+```bash
+./Examples/Stereo-Inertial/stereo_inertial_realsense_D435i Vocabulary/ORBvoc.txt /Examples/Stereo-Inertial/RealSense_D435i.yaml
 ```
